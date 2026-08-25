@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Root Ray — Контакты | Цветочная студия</title>
+  <meta name="description" content="Свяжитесь с нами — Root Ray цветочная студия. Мы открыты к сотрудничеству и обратной связи.">
+  <meta name="robots" content="index, follow">
+  <!-- Open Graph -->
+  <meta property="og:title" content="Root Ray — Контакты">
+  <meta property="og:description" content="Свяжитесь с цветочной студией Root Ray.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://rootray.com/contacts">
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Root Ray — Контакты">
+  <meta name="twitter:description" content="Свяжитесь с цветочной студией Root Ray.">
+  <link rel="stylesheet" href="style.css">
+  <!-- Дополнительные стили для страницы контактов -->
+  <style>
+    /* ===== Страница Контакты (Contacts) — Flexbox ===== */
+    .contacts {
+      padding: 220px 20px 160px;
+      background-color: var(--color-white);
+      font-family: var(--font-serif);
+      color: var(--color-text);
+    }
+
+    .contacts__flex {
+      display: flex; /* flex-контейнер */
+      flex-direction: column;
+      gap: var(--gap-hero);
+    }
+
+    .contacts__container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid; /* grid-контейнер */
+      grid-template-columns: 1fr 1fr;
+      gap: 100px;
+      align-items: stretch;
+    }
+
+    .contacts__info,
+    .contacts__form {
+      display: flex; /* flex-контейнер */
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .contacts__form {
+      padding-top: 100px;
+    }
+
+    /* Левая колонка */
+    .contacts__info h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 400;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      color: var(--color-text);
+    }
+
+    .contacts__description {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: #444444;
+      margin-bottom: 40px;
+      max-width: 440px;
+    }
+
+    .contacts__details {
+      display: flex; /* flex-контейнер */
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .contacts__item {
+      display: flex; /* flex-контейнер */
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .contacts__label {
+      font-family: var(--font-sans);
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #888888;
+    }
+
+    .contacts__value {
+      font-size: 1.1rem;
+      color: var(--color-text);
+      text-decoration: none;
+      transition: opacity 0.2s ease;
+    }
+
+    .contacts__value:hover {
+      opacity: 0.7;
+    }
+
+    /* Правая колонка — форма */
+    .contacts__form form {
+      display: flex; /* flex-контейнер */
+      flex-direction: column;
+      gap: 24px;
+      width: 100%;
+    }
+
+    .contacts__checkbox-row {
+      display: flex; /* flex-контейнер */
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-sans);
+      font-size: 11px;
+      letter-spacing: 1px;
+      color: #555555;
+    }
+
+    .contacts__checkbox-row input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      accent-color: var(--color-black);
+      cursor: pointer;
+    }
+
+    .contacts__form-grid {
+      display: grid; /* grid-контейнер */
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      width: 100%;
+    }
+
+    .contacts__input-fields {
+      display: flex; /* flex-контейнер */
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .contacts__form-group input,
+    .contacts__form-group textarea {
+      width: 100%;
+      padding: 14px 16px;
+      border: none;
+      background-color: #f5f5f5;
+      font-family: var(--font-sans);
+      font-size: 11px;
+      letter-spacing: 1px;
+      color: var(--color-text);
+      outline: none;
+      transition: box-shadow 0.2s ease;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+      box-sizing: border-box;
+    }
+
+    .contacts__form-group input:focus,
+    .contacts__form-group textarea:focus {
+      box-shadow: 0 0 0 2px var(--color-black);
+    }
+
+    .contacts__form-group textarea {
+      height: 100%;
+      min-height: 140px;
+      resize: vertical;
+    }
+
+    .contacts__form-action {
+      display: flex; /* flex-контейнер */
+      justify-content: flex-end;
+    }
+
+    .contacts__submit-btn {
+      padding: 14px 40px;
+      background-color: var(--color-black);
+      color: var(--color-white);
+      border: none;
+      font-family: var(--font-sans);
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background-color 0.3s ease, opacity 0.2s ease;
+    }
+
+    .contacts__submit-btn:hover {
+      background-color: #333333;
+    }
+
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+    }
+
+    /* Адаптивность */
+    @media (max-width: 900px) {
+      .contacts__container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .contacts__description {
+        max-width: 100%;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .contacts {
+        padding: 120px 16px 60px;
+      }
+
+      .contacts__form-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .contacts__form-group textarea {
+        min-height: 120px;
+      }
+
+      .contacts__form-action {
+        justify-content: stretch;
+      }
+
+      .contacts__submit-btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .contacts {
+        padding: 100px 12px 40px;
+      }
+
+      .contacts__info h1 {
+        font-size: 1.8rem;
+      }
+
+      .contacts__form-group input,
+      .contacts__form-group textarea {
+        padding: 12px 14px;
+        font-size: 10px;
+      }
+
+      .contacts__submit-btn {
+        padding: 12px 20px;
+        font-size: 9px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Шапка (как на index.html) -->
+  <header class="header header__flex" role="banner" aria-label="Основная навигация">
+    <nav class="nav nav__flex nav__left" aria-label="Левое меню">
+      <a href="#" class="nav__icon-link" aria-label="Поиск">
+        <svg class="nav__icon" viewBox="0 0 24 24" role="img" aria-hidden="true"><path fill="currentColor" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+      </a>
+      <a href="shop.html" class="nav__link">МАГАЗИН</a>
+      <a href="about.html" class="nav__link">О НАС</a>
+    </nav>
+
+    <a href="index.html" class="header__logo" style="color: inherit; text-decoration: none;">Root Ray</a>
+
+    <nav class="nav nav__flex nav__right" aria-label="Правое меню">
+      <a href="delivery.html" class="nav__link">ДОСТАВКА</a>
+      <a href="contacts.html" class="nav__link">КОНТАКТЫ</a>
+      <a href="#" class="nav__icon-link" aria-label="Корзина">
+        <svg class="nav__icon" viewBox="0 0 24 24" role="img" aria-hidden="true"><path fill="currentColor" d="M18 6h-2c0-2.21-1.79-4-4-4S8 3.79 8 6H6c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-6-2c1.1 0 2 .9 2 2h-4c0-1.1.9-2 2-2zm6 16H6V8h2v2c0 .55.45 1 1 1s1-.45 1-1V8h4v2c0 .55.45 1 1 1s1-.45 1-1V8h2v12z"/></svg>
+      </a>
+    </nav>
+  </header>
+
+  <!-- Основной блок контактов -->
+  <main class="contacts contacts__flex" role="main" aria-label="Страница контактов">
+    <div class="contacts__container">
+
+      <!-- Левая колонка -->
+      <div class="contacts__info">
+        <h1>КОНТАКТЫ</h1>
+        <p class="contacts__description">
+          Мы всегда открыты к новым предложениям, сотрудничеству и конструктивной критике.
+          Не стесняйтесь и пишите нам, мы очень дорожим обратной связью от клиентов.
+        </p>
+
+        <div class="contacts__details">
+          <div class="contacts__item">
+            <span class="contacts__label">ЭЛЕКТРОННАЯ ПОЧТА</span>
+            <a href="mailto:hello@rootray.com" class="contacts__value">hello@rootray.com</a>
+          </div>
+          <div class="contacts__item">
+            <span class="contacts__label">АДРЕС</span>
+            <p class="contacts__value">
+              Проезд Аэропорта, 8/4<br>
+              Москва
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Правая колонка — форма -->
+      <div class="contacts__form">
+        <form action="#" method="post">
+
+          <div class="contacts__checkbox-row">
+            <input type="checkbox" id="order-question" name="order-question">
+            <label for="order-question">Вопрос о заказе? *</label>
+          </div>
+
+          <div class="contacts__form-grid">
+            <div class="contacts__input-fields">
+              <div class="contacts__form-group">
+                <label for="name" class="visually-hidden">Имя *</label>
+                <input type="text" id="name" name="name" placeholder="Имя *" required>
+              </div>
+              <div class="contacts__form-group">
+                <label for="email" class="visually-hidden">Эл. почта *</label>
+                <input type="email" id="email" name="email" placeholder="Эл. почта *" required>
+              </div>
+              <div class="contacts__form-group">
+                <label for="origin" class="visually-hidden">Откуда вы?</label>
+                <input type="text" id="origin" name="origin" placeholder="Откуда вы?">
+              </div>
+            </div>
+
+            <div class="contacts__textarea-field">
+              <div class="contacts__form-group">
+                <label for="message" class="visually-hidden">Сообщение</label>
+                <textarea id="message" name="message" placeholder="Сообщение"></textarea>
+              </div>
+            </div>
+          </div>
+
+          <div class="contacts__form-action">
+            <button type="submit" class="contacts__submit-btn">ОТПРАВИТЬ</button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Социальный футер (как на index.html) -->
+  <section class="social-footer social-footer__flex" aria-label="Социальные сети и подвал">
+    <div class="social-footer__container">
+
+      <!-- Верхний заголовок соцсетей -->
+      <div class="social-footer__header social-footer__header__flex">
+        <span class="social-footer__title">МЫ В СОЦ. СЕТЯХ</span>
+        <span class="social-footer__handle">@RootRay</span>
+      </div>
+
+
+
+      <!-- Средний блок: Контакты, Название, Рассылка, Соцсети -->
+      <div class="social-footer__middle social-footer__middle__grid">
+        <div class="social-footer__col social-footer__col__address">
+          <p>Цветочная мастерская</p>
+          <p>Проезд Пушкина,<br>дом 2, корпус 3,</p>
+          <p>Москва</p>
+        </div>
+
+        <div class="social-footer__col social-footer__col__center">
+          <h2 class="social-footer__brand-title">Root Ray</h2>
+          <form class="social-footer__form social-footer__form__flex">
+            <input type="email" placeholder="ЭЛ. ПОЧТА" required class="social-footer__form-input">
+            <button type="submit" class="social-footer__form-btn">ПОДПИСАТЬСЯ</button>
+          </form>
+        </div>
+
+        <div class="social-footer__col social-footer__col__links">
+          <a href="#" class="social-footer__link">VKONTAKTE</a>
+          <a href="#" class="social-footer__link">TELEGRAM</a>
+          <a href="#" class="social-footer__link">PINTEREST</a>
+        </div>
+      </div>
+
+      <!-- Нижняя копирайт-информация -->
+      <div class="social-footer__bottom">
+        <p>© 2026 Root Ray</p>
+      </div>
+
+    </div>
+  </section>
+
+</body>
+</html>
