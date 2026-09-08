@@ -1,23 +1,45 @@
-/**
+﻿/**
  * Сервис для работы с Supabase
- * Будет инициализирован при подключении бэкенда
+ * Использует переменные окружения из .env
  */
 
-// import { createClient } from '@supabase/supabase-js'
+import { createClient } from '@supabase/supabase-js'
 
-// const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
-// const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY
-// export const supabase = createClient(supabaseUrl, supabaseKey)
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
+const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY
 
-// Заглушка для будущей интеграции
-export const supabase = null
+// Инициализация клиента
+export const supabase = (supabaseUrl && supabaseKey) 
+  ? createClient(supabaseUrl, supabaseKey) 
+  : null
 
-// Хелперы для работы с данными
+// Хелперы для работы с данными (db layer)
 export const db = {
-  // Здесь будут методы для работы с таблицами
-  async getData(table) {
-    // Временная заглушка
-    console.warn('Supabase не инициализирован')
-    return []
+  /**
+   * Получение данных из таблицы
+   * @param {string} table - Имя таблицы
+   * @param {object} query - Фильтры (опционально)
+   */
+  async getData(table, query = {}) {
+    if (!supabase) {
+      console.warn('Supabase не сконфигурирован. Запрос к [' + table + '] отменен.')
+      return []
+    }
+    
+    let request = supabase.from(table).select('*')
+    
+    // Пример применения простых фильтров
+    Object.keys(query).forEach(key => {
+      request = request.eq(key, query[key])
+    })
+
+    const { data, error } = await request
+    
+    if (error) {
+      console.error('Ошибка при получении данных из ' + table + ':', error.message)
+      return []
+    }
+    
+    return data
   }
 }
