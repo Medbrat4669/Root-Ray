@@ -3,7 +3,13 @@
     <div class="product-card__image-wrap">
       <img :src="image" :alt="title" class="product-card__image">
       <div class="product-card__overlay">
-        <AppButton variant="primary" class="product-card__add-btn">В КОРЗИНУ</AppButton>
+        <AppButton 
+          variant="primary" 
+          class="product-card__add-btn"
+          @click="handleAddToCart"
+        >
+          В КОРЗИНУ
+        </AppButton>
       </div>
     </div>
     <div class="product-card__info">
@@ -15,8 +21,13 @@
 
 <script setup>
 import AppButton from '@/components/ui/AppButton.vue'
+import { useCart } from '@/composables/useCart'
 
-defineProps({
+const props = defineProps({
+  id: {
+    type: [Number, String],
+    required: true
+  },
   title: {
     type: String,
     required: true
@@ -30,6 +41,17 @@ defineProps({
     required: true
   }
 })
+
+const { addItem } = useCart()
+
+const handleAddToCart = () => {
+  addItem({
+    id: props.id,
+    title: props.title,
+    price: props.price,
+    image: props.image
+  })
+}
 
 const formatPrice = (value) => {
   return new Intl.NumberFormat('ru-RU').format(value)
